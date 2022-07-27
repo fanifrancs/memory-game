@@ -12,13 +12,6 @@ body{
     height: 400px;
 }
 
-#item {
-    width: 100px;
-    height: 100px;
-    font-size: 30px;
-    text-align: center;
-}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -27,13 +20,12 @@ ul {
     background-color: #333;
 }
 
-li:nth-of-type(1){
+li:nth-of-type(1), li:nth-of-type(2){
     float: left;
-    font-family: 'Lobster', cursive;
 }
 
-li:nth-of-type(2){
-    float: left;
+li:nth-of-type(1){
+    font-family: 'Lobster', cursive;
 }
 
 li:nth-of-type(3){

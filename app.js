@@ -14,15 +14,15 @@ const cardArray = [
 ]
 let grid = document.querySelector('#container');
 let sound = document.createElement('audio');
-let lis = document.querySelectorAll('li');
-let score = lis[1];
-let restart = lis[2];
+let score = document.querySelector('span');
+let restart = document.querySelectorAll('li')[2];
 let cardsChosen = [];
 let cardsMatched = 0;
 
-//line below rearranges the cards in the array
+//line below rearranges the images in the array
 //works like magic :) 
-//I'm still trying to understand how it works lol
+//still tryin to understand how it works : )
+//if you do please kindly get in touch : )
 cardArray.sort(() => 0.5 - Math.random());
 
 //renders cards to board
@@ -39,18 +39,20 @@ function createBoard() {
 createBoard();
 
 //flips any clicked card
-function flip() {
-    let cardId = this.getAttribute('id');
-    this.setAttribute('src', cardArray[cardId]);
+async function flip() {
     if (cardsChosen.length < 2) {
+        let cardId = this.getAttribute('id');
+        this.setAttribute('src', cardArray[cardId]);
         if (cardsChosen.includes(cardId)) {
+            sound.setAttribute('src', './sounds/wrong.mp3');
+            await sound.play();
             alert('Card is already flipped!');
         } else {
             cardsChosen.push(cardId);
         }
     }
     if (cardsChosen.length === 2) {
-        setTimeout(cardsCheck, 100);
+        setTimeout(cardsCheck, 800);
     }
 }
 
@@ -64,14 +66,12 @@ function cardsCheck() {
         card1.style.pointerEvents = 'none';
         card2.style.pointerEvents = 'none';
         cardsMatched++;
-        sound.setAttribute('src', './sounds/tada.mp3');
-        sound.play();
-        score.innerText = `Pairs matched:${cardsMatched}/6`;
+        score.innerText = cardsMatched;
         if (cardsMatched === 6) {
             setTimeout(() => {
-                alert('Well done! You found all matching pairs.');
+                alert('WELL DONE ! You found all matching pairs.');
                 location.reload();
-            }, 1000)
+            }, 1000) 
         }
     } else {
         card1.setAttribute('src', './img/unmatched.jpg');
