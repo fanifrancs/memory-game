@@ -11,24 +11,21 @@ const cardArray = [
     './img/objc.png',
     './img/py.png',
     './img/py.png'
-]
-let grid = document.querySelector('#container');
-let sound = document.createElement('audio');
-let score = document.querySelector('span');
-let restart = document.querySelectorAll('li')[2];
-let cardsChosen = [];
-let cardsMatched = 0;
+],
+grid = document.querySelector('#container'),
+sound = document.createElement('audio'),
+score = document.querySelector('span'),
+restart = document.querySelectorAll('li')[2];
 
-//line below rearranges the images in the array
-//works like magic :) 
-//still tryin to understand how it works : )
-//if you do please kindly get in touch : )
+let cardsChosen = [], cardsMatched = 0;
+
+//rearranges images in array
 cardArray.sort(() => 0.5 - Math.random());
 
 //renders cards to board
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
-        let card = document.createElement('img');
+        const card = document.createElement('img');
         card.setAttribute('src', './img/unmatched.jpg');
         card.setAttribute('id', i);
         grid.appendChild(card);
@@ -58,8 +55,8 @@ async function flip() {
 
 //checks for match
 function cardsCheck() {
-    let card1 = document.getElementById(cardsChosen[0]);
-    let card2 = document.getElementById(cardsChosen[1]);
+    const card1 = document.getElementById(cardsChosen[0]),
+          card2 = document.getElementById(cardsChosen[1]);
     if (card1.getAttribute('src') === card2.getAttribute('src')) {
         card1.setAttribute('src', './img/blank.jpg');
         card2.setAttribute('src', './img/blank.jpg');
